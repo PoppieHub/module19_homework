@@ -1,6 +1,6 @@
 /* # Fifth task */
 
-let TotalPowerKWh = 0;
+let _totalPowerKWh = 0;
 
 class Device {
     /* ## This parent constructor method accepts parameters:
@@ -17,9 +17,10 @@ class Device {
 
     /* ## This prototype method calculates the total power consumption */
     setTotalPowerKWh() {
-        if (this.powerConnection) {
-            return TotalPowerKWh += this.powerConsumptionKWh;
-        }
+        if (_totalPowerKWh < 0) return _totalPowerKWh = 0;
+        if (this.powerConnection && this.powerConsumptionKWh > 0) {
+            return _totalPowerKWh += this.powerConsumptionKWh;
+        } else return _totalPowerKWh;
     }
     /* ## This prototype method checks whether the device is switched on/off from the socket */
     getMainsPowerSupply() {
@@ -91,5 +92,5 @@ console.log(pc);
 console.log(pc.getRemoteWork());
 console.log(lamp);
 console.log(lamp.getMainsPowerSupply());
-console.table(`Total power consumption of switched on appliances: ${TotalPowerKWh}`);
+console.table(`Total power consumption of switched on appliances: ${_totalPowerKWh}`);
 console.groupEnd();

@@ -1,6 +1,6 @@
 /* # Fourth task */
 
-let TotalPowerKWh = 0;
+let _totalPowerKWh = 0;
 
 /* ## This parent constructor function accepts parameters:
         string: name,
@@ -16,9 +16,10 @@ function Device(name, powerConnection, powerConsumptionKWh) {
 
 /* ## This prototype function calculates the total power consumption */
 Device.prototype.setTotalPowerKWh = function () {
-    if (this.powerConnection) {
-       return TotalPowerKWh += this.powerConsumptionKWh;
-    }
+    if (_totalPowerKWh < 0) return _totalPowerKWh = 0;
+    if (this.powerConnection && this.powerConsumptionKWh > 0) {
+        return _totalPowerKWh += this.powerConsumptionKWh;
+    } else return _totalPowerKWh;
 }
 
 /* ## This prototype function checks whether the device is switched on/off from the socket */
@@ -89,6 +90,6 @@ console.group(`Fourth task`);
     console.log(pc.getRemoteWork());
     console.log(lamp);
     console.log(lamp.getMainsPowerSupply());
-    console.table(`Total power consumption of switched on appliances: ${TotalPowerKWh}`);
+    console.table(`Total power consumption of switched on appliances: ${_totalPowerKWh}`);
 console.groupEnd();
 
